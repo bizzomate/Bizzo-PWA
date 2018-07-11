@@ -47,3 +47,10 @@ gulp.task("watch:sw", () => {
 gulp.task("write:index.html",()=>{
     gulp.src("./assets/index.html").pipe(gulp.dest("./theme/",{overwrite:true}));
 });
+gulp.task("write:manifest.json",()=>{
+    gulp.src("./assets/manifest.json").pipe(gulp.dest("./theme/",{overwrite:true}));
+});
+gulp.task("write:icons",()=>{
+    gulp.src("./assets/manifest.json").pipe(gulp.dest("./theme/",{overwrite:true}));
+});
+

@@ -1,5 +1,6 @@
 {
-    "sourceFolderPath":"",
-    "deploymentFolderPath": "",
-    "extentionsToBeCached":["html","js","svg","css"]
+    "appName":"Bizzo MX-PWA",
+    "sourceFolderPath":"./theme",
+    "deploymentFolderPath": "./deployment/web",
+    "extentionsToBeCached":["html","js","css"]
 }

@@ -30,6 +30,7 @@
   "homepage": "https://github.com/bizzomate/Bizzo-PWA#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-copy": "^1.1.0",
     "sw-precache": "^5.2.1"
   }
 }

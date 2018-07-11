@@ -1,6 +1,7 @@
 // importing bizzo config object.
 const config = require("./bizzo.config.json");
 const gulp = require("gulp");
+const gulpCopy = require('gulp-copy');
 const swPreChache = require("sw-precache");
 
 // handle required config props
@@ -40,17 +41,20 @@ gulp.task("watch:sw", () => {
   );
   const watcher = gulp.watch(exts, ["generate-sw"]);
   watcher.on("change", event => {
-    console.log(`[Captured Change in ${event.path} : ${event.type}`);
+    console.log(`[Captured ${event.type} in ${event.path}]`);
   });
 });
 
 gulp.task("write:index.html",()=>{
-    gulp.src("./assets/index.html").pipe(gulp.dest("./theme/",{overwrite:true}));
+    gulp.src("./assets/index.html")
+        .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
 });
 gulp.task("write:manifest.json",()=>{
-    gulp.src("./assets/manifest.json").pipe(gulp.dest("./theme/",{overwrite:true}));
+    gulp.src("./assets/manifest.json")
+        .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
 });
 gulp.task("write:icons",()=>{
-    gulp.src("./assets/manifest.json").pipe(gulp.dest("./theme/",{overwrite:true}));
+    gulp.src("./assets/icons/*.png")
+        .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
 });
 

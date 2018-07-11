@@ -27,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/bizzomate/Bizzo-PWA/issues"
   },
-  "homepage": "https://github.com/bizzomate/Bizzo-PWA#readme"
+  "homepage": "https://github.com/bizzomate/Bizzo-PWA#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "sw-precache": "^5.2.1"
+  }
 }

@@ -1,0 +1,31 @@
+{
+  "name": "bizzo-pwa",
+  "version": "1.0.0",
+  "description": "Toolkit to build Mendix Progressive Web Apps Mx_PWA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bizzomate/Bizzo-PWA.git"
+  },
+  "keywords": [
+    "Progressive",
+    "Web",
+    "Apps",
+    "Mendix",
+    "Web",
+    "Apps",
+    "Mobile",
+    "Tablet",
+    "Service",
+    "Worker"
+  ],
+  "author": "Osama Najjar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bizzomate/Bizzo-PWA/issues"
+  },
+  "homepage": "https://github.com/bizzomate/Bizzo-PWA#readme"
+}

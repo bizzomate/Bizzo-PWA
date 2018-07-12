@@ -1,0 +1,29 @@
+body{
+    font-family:Ubuntu,monospace,sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+    
+}
+.main-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.logo{
+    height: 128px;
+    width: auto;
+}
+
+.stamp{
+    bottom: 25px;
+    height: 32px;
+    opacity: .5;
+    position: absolute;
+    right: 25px;
+    width: auto;
+}

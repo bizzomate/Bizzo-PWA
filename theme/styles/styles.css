@@ -17,6 +17,7 @@ body{
 .logo{
     height: 128px;
     width: auto;
+    transition: height 2s ease-in-out;
 }
 
 .stamp{
@@ -27,3 +28,4 @@ body{
     right: 25px;
     width: auto;
 }
+

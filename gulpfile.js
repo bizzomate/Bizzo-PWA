@@ -57,4 +57,13 @@ gulp.task("write:icons",()=>{
     gulp.src("./assets/icons/*.png")
         .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
 });
+gulp.task("write:icons",()=>{
+  gulp.src("./assets/icons/*.png")
+      .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
+});
+
+gulp.task("write:bizzo-sw-register",()=>{
+  gulp.src("./assets/bizzo-sw-register.js")
+      .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
+});
 

@@ -47,7 +47,7 @@ gulp.task("watch:sw", () => {
 
 gulp.task("write:index.html",()=>{
     gulp.src("./assets/index.html")
-        .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));
+        .pipe(gulpCopy(`${config.sourceFolderPath}/`,{prefix:1}));  
 });
 gulp.task("write:manifest.json",()=>{
     gulp.src("./assets/manifest.json")

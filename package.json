@@ -4,6 +4,7 @@
   "description": "Toolkit to build Mendix Progressive Web Apps Mx_PWA",
   "main": "index.js",
   "scripts": {
+    "dev-server":"cd theme & live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,6 +32,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-copy": "^1.1.0",
+    "live-server": "^1.2.0",
     "sw-precache": "^5.2.1"
   }
 }

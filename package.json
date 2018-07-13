@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/bizzomate/Bizzo-PWA#readme",
   "devDependencies": {
+    "colors": "^1.3.0",
     "gulp": "^3.9.1",
     "gulp-copy": "^1.1.0",
     "gulp-inject": "^4.3.2",

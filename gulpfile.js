@@ -4,6 +4,7 @@ const gulp = require("gulp");
 const gulpCopy = require("gulp-copy");
 const inject = require("gulp-inject");
 const swPreChache = require("sw-precache");
+const colors = require('colors');
 
 // handle required config props
 if (config) {
@@ -12,13 +13,17 @@ if (config) {
     "deploymentFolderPath",
     "extentionsToBeCached",
     "themeColor"
+    
   ];
+  const bizzoAssistantTitle = '\n### Bizzo Assistant ###\n'.bold.blue;
+
+
   requiredConfProps.forEach(prop => {
     if (!config[prop]) {
-      throw new ReferenceError(
-        `'${prop}' property is required`,
-        "bizzo.config.json"
-      );
+      let problemMessage = `\n==> Problem : '${prop}' property is required.\n\xa0\xa0\xa0\xa0( couldn't find '${prop}' in 'bizzo.config.json' )\n`.yellow;
+      let issueSolution = `\n==> Solution : Add '${prop}' to your 'bizzo.config.json'\n\xa0\xa0\xa0\xa0 your 'bizzo.config.json' should look like this:\n\xa0\xa0{\n\xa0\xa0\xa0...\n\n\xa0\xa0\xa0'${prop}':'SOME_VALUE',\n\xa0\xa0\xa0...\n\xa0\xa0}`.green;
+      console.log(bizzoAssistantTitle+problemMessage+issueSolution);
+      process.exit(0);     
     }
   });
 }

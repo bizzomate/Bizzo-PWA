@@ -2,6 +2,7 @@
     "appName":"Bizzo MX-PWA",
     "deploymentFolderPath": "./deployment/web",
     "extentionsToBeCached":["html","js","css","svg","png","jpg"],
-    "sourceFolderPath":"./theme"
-    
+    "sourceFolderPath":"./theme",
+    "themeColor" : "#000000",
+    "offlineEnabled" : false
 }

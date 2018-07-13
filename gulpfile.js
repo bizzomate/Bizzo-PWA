@@ -12,14 +12,14 @@ if (config) {
     "sourceFolderPath",
     "deploymentFolderPath",
     "extentionsToBeCached",
-    "themeColor"
-    
+    "themeColor",
+    "offlineEnabled"
   ];
   const bizzoAssistantTitle = '\n### Bizzo Assistant ###\n'.bold.blue;
 
 
   requiredConfProps.forEach(prop => {
-    if (!config[prop]) {
+    if (config[prop] === undefined) {
       let problemMessage = `\n==> Problem : '${prop}' property is required.\n\xa0\xa0\xa0\xa0( couldn't find '${prop}' in 'bizzo.config.json' )\n`.yellow;
       let issueSolution = `\n==> Solution : Add '${prop}' to your 'bizzo.config.json'\n\xa0\xa0\xa0\xa0 your 'bizzo.config.json' should look like this:\n\xa0\xa0{\n\xa0\xa0\xa0...\n\n\xa0\xa0\xa0'${prop}':'SOME_VALUE',\n\xa0\xa0\xa0...\n\xa0\xa0}`.green;
       console.log(bizzoAssistantTitle+problemMessage+issueSolution);
@@ -65,7 +65,7 @@ gulp.task("write:icons", () => {
 
 gulp.task("write:bizzo-sw-register", () => {
   gulp
-    .src("./assets/bizzo-sw-register.js")
+    .src(["./assets/bizzo-sw-register.js","./assets/bizzo-connectivity-listener.js"])
     .pipe(gulpCopy(`${config.sourceFolderPath}/`, { prefix: 1 }));
 });
 
@@ -95,6 +95,9 @@ gulp.task("inject:scripts", () => {
         starttag: "<!-- bizzo:scripts -->",
         transform: (path, file) => {
           let content = file.contents.toString("utf8");
+          if(config.offlineEnabled){
+            content = content.replace(/<!--bizzo:hook-->[\s\S]*<!--bizzo:hook:end-->/,"");
+          }
           return content;
         }
       })

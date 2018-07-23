@@ -2,9 +2,12 @@
 const config = require("./bizzo.config.json");
 const gulp = require("gulp");
 const gulpCopy = require("gulp-copy");
-const inject = require("gulp-inject");
 const swPreChache = require("sw-precache");
-const colors = require('colors');
+const colors = require("colors");
+const change = require('gulp-change');
+const fs = require("fs");
+const assetsDir = "./assets";
+
 
 // handle required config props
 if (config) {
@@ -15,15 +18,16 @@ if (config) {
     "themeColor",
     "offlineEnabled"
   ];
-  const bizzoAssistantTitle = '\n### Bizzo Assistant ###\n'.bold.blue;
-
+  const bizzoAssistantTitle = "\n### Bizzo Assistant ###\n".bold.blue;
 
   requiredConfProps.forEach(prop => {
     if (config[prop] === undefined) {
-      let problemMessage = `\n==> Problem : '${prop}' property is required.\n\xa0\xa0\xa0\xa0( couldn't find '${prop}' in 'bizzo.config.json' )\n`.yellow;
-      let issueSolution = `\n==> Solution : Add '${prop}' to your 'bizzo.config.json'\n\xa0\xa0\xa0\xa0 your 'bizzo.config.json' should look like this:\n\xa0\xa0{\n\xa0\xa0\xa0...\n\n\xa0\xa0\xa0'${prop}':'SOME_VALUE',\n\xa0\xa0\xa0...\n\xa0\xa0}`.green;
-      console.log(bizzoAssistantTitle+problemMessage+issueSolution);
-      process.exit(0);     
+      let problemMessage = `\n==> Problem : '${prop}' property is required.\n\xa0\xa0\xa0\xa0( couldn't find '${prop}' in 'bizzo.config.json' )\n`
+        .yellow;
+      let issueSolution = `\n==> Solution : Add '${prop}' to your 'bizzo.config.json'\n\xa0\xa0\xa0\xa0 your 'bizzo.config.json' should look like this:\n\xa0\xa0{\n\xa0\xa0\xa0...\n\n\xa0\xa0\xa0'${prop}':'SOME_VALUE',\n\xa0\xa0\xa0...\n\xa0\xa0}`
+        .green;
+      console.log(bizzoAssistantTitle + problemMessage + issueSolution);
+      process.exit(0);
     }
   });
 }
@@ -65,45 +69,31 @@ gulp.task("write:icons", () => {
 
 gulp.task("write:bizzo-sw-register", () => {
   gulp
-    .src(["./assets/bizzo-sw-register.js","./assets/bizzo-connectivity-listener.js"])
+    .src([
+      "./assets/bizzo-sw-register.js",
+      "./assets/bizzo-connectivity-listener.js"
+    ])
     .pipe(gulpCopy(`${config.sourceFolderPath}/`, { prefix: 1 }));
 });
 
 gulp.task("inject:tags", () => {
   gulp
     .src(`${config.sourceFolderPath}/index.html`)
-    .pipe(
-      inject(gulp.src("./assets/_bizzo-tags.html"), {
-        name: "bizzo:tags",
-        starttag: "<!-- bizzo:tags -->",
-        transform: (path, file) => {
-          let content = file.contents.toString("utf8");
-          content = content.replace("#$theme#", config.themeColor);
-          return content;
-        }
-      })
-    )
+    .pipe(change(content =>{
+      return content.replace(/<!-- bizzo-tags -->[\s\S]*<!-- bizzo-tags-end -->/g,getBizzoTagsContent(config.themeColor));
+    }))
     .pipe(gulp.dest(`${config.sourceFolderPath}/`));
 });
 
 gulp.task("inject:scripts", () => {
   gulp
     .src(`${config.sourceFolderPath}/index.html`)
-    .pipe(
-      inject(gulp.src("./assets/_bizzo-scripts.html"), {
-        name: "bizzo:scripts",
-        starttag: "<!-- bizzo:scripts -->",
-        transform: (path, file) => {
-          let content = file.contents.toString("utf8");
-          if(config.offlineEnabled){
-            content = content.replace(/<!--bizzo:hook-->[\s\S]*<!--bizzo:hook:end-->/,"");
-          }
-          return content;
-        }
-      })
-    )
+    .pipe(change(content =>{
+      return content.replace(/<!-- bizzo-scripts -->[\s\S]*<!-- bizzo-scripts-end -->/g,getBizzoScriptsContent(config.offlineEnabled));
+    }))
     .pipe(gulp.dest(`${config.sourceFolderPath}/`));
 });
+
 
 gulp.task("mx-pwa", [
   "write:sw",
@@ -113,3 +103,30 @@ gulp.task("mx-pwa", [
   "inject:tags",
   "inject:scripts"
 ]);
+
+
+const bizzoScripts = (content)=>{
+  if(config.offlineEnabled){
+    return content.replace()
+  }else{
+
+  }
+};
+
+
+const getBizzoTagsContent = (themeColor)=>{
+  let content = fs.readFileSync(`${assetsDir}/_bizzo-tags`,'utf-8');
+  return `<!-- bizzo-tags -->\n${content.replace("#$theme#",themeColor)}\n<!-- bizzo-tags-end -->`;
+};
+
+const getBizzoScriptsContent = (offlineEnabled)=>{
+  let content = fs.readFileSync(`${assetsDir}/_bizzo-scripts`,'utf-8');
+  if(offlineEnabled){
+    content = content.replace(/<!-- bizzo-hook -->[\s\S]*<!-- bizzo-hook-end -->/g,"");
+  }
+  
+  content = content.replace(/<!--(.)*-->/g,"").trim();// remove comments
+  return `<!-- bizzo-scripts -->\n${content}\n<!-- bizzo-scripts-end -->`;
+}
+
+

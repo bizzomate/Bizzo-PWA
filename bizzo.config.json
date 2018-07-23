@@ -3,6 +3,6 @@
     "deploymentFolderPath": "./deployment/web",
     "extentionsToBeCached":["html","js","css","svg","png","jpg"],
     "sourceFolderPath":"./theme",
-    "themeColor" : "#000000",
-    "offlineEnabled" : false
+    "themeColor" : "#0000ff",
+    "offlineEnabled" : true
 }

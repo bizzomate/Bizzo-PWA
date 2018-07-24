@@ -9,5 +9,5 @@ gulp.task('create-pwa-package', () =>
         '../gulpfile.js'
     ])
         .pipe(zip('bizzo-pwa.zip'))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('./dist'))
 );

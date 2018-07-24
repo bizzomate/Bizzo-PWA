@@ -77,20 +77,16 @@ gulp.task("write:bizzo-sw-register", () => {
     .pipe(gulpCopy(`${config.sourceFolderPath}/`, { prefix: 1 }));
 });
 
-gulp.task("inject:tags", () => {
+gulp.task("inject", () => {
   gulp
     .src(`${config.sourceFolderPath}/index.html`)
+    //inject tags
     .pipe(change(content =>{
-      return content.replace(/^<!-- bizzo-tags -->$[\s\S]*^<!-- bizzo-tags-end -->$/m,getBizzoTagsContent(config.themeColor));
+      return content.replace(/<!-- bizzo-tags -->[\s\S]*<!-- bizzo-tags-end -->/g,getBizzoTagsContent(config.themeColor));
     }))
-    .pipe(gulp.dest(`${config.sourceFolderPath}/`));
-});
-
-gulp.task("inject:scripts", () => {
-  gulp
-    .src(`${config.sourceFolderPath}/index.html`)
+    //inject scripts
     .pipe(change(content =>{
-      return content.replace(/^<!-- bizzo-scripts -->$[\s\S]*^<!-- bizzo-scripts-end -->$/m,getBizzoScriptsContent(config.offlineEnabled));
+      return content.replace(/<!-- bizzo-scripts -->[\s\S]*<!-- bizzo-scripts-end -->/g,getBizzoScriptsContent(config.offlineEnabled));
     }))
     .pipe(gulp.dest(`${config.sourceFolderPath}/`));
 });
@@ -102,8 +98,7 @@ gulp.task("mx-pwa", gulpSync.sync(
     "write:manifest.json",
     "write:icons",
     "write:bizzo-sw-register",
-    "inject:tags",
-    "inject:scripts"
+    "inject"
   ]
 ));
 
@@ -119,8 +114,8 @@ const getBizzoScriptsContent = (offlineEnabled)=>{
   if(offlineEnabled){
     content = content.replace(/<!-- bizzo-hook -->[\s\S]*<!-- bizzo-hook-end -->/g,"");
   }
-  
-  content = content.replace(/<!--(.)*-->/g,"").trim();// remove comments
+  // remove comments
+  content = content.replace(/<!--(.)*-->/g,"").trim();
   return `<!-- bizzo-scripts -->\n${content}\n<!-- bizzo-scripts-end -->`;
 }
 

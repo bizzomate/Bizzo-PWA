@@ -4,5 +4,5 @@
     "extentionsToBeCached":["html","js","css","svg","png","jpg"],
     "sourceFolderPath":"./theme",
     "themeColor" : "#0000ff",
-    "offlineEnabled" : true
+    "offlineEnabled" : false
 }

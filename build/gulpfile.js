@@ -3,7 +3,7 @@ const zip = require('gulp-zip');
  
 gulp.task('create-pwa-package', () =>
     gulp.src([
-        '../assets',
+        '../pwa_assets',
         '../package.json',
         '../bizzo.config.json',
         '../gulpfile.js'

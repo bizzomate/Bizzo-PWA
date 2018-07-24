@@ -9,7 +9,7 @@ const swPreChache = require("sw-precache");
 const colors = require("colors");
 const change = require('gulp-change');
 const fs = require("fs");
-const assetsDir = "./assets";
+const assetsDir = "./pwa_assets";
 
 
 // handle required config props
@@ -65,7 +65,7 @@ gulp.task("watch:sw", () => {
 
 gulp.task("write:manifest.json", () => {
   gulp
-    .src("./assets/manifest.json")
+    .src(`${assetsDir}/manifest.json`)
     .pipe(change(content=>{
       return setAppManifest(config,content);
     }))
@@ -73,15 +73,15 @@ gulp.task("write:manifest.json", () => {
 });
 gulp.task("write:icons", () => {
   gulp
-    .src("./assets/pwa_icons/*.png")
+    .src(`${assetsDir}/pwa_icons/*.png`)
     .pipe(gulpCopy(`${config.sourceFolderPath}/`, { prefix: 1 }));
 });
 
 gulp.task("write:bizzo-sw-register", () => {
   gulp
     .src([
-      "./assets/bizzo-sw-register.js",
-      "./assets/bizzo-connectivity-listener.js"
+      `${assetsDir}/bizzo-sw-register.js`,
+      `${assetsDir}/bizzo-connectivity-listener.js`
     ])
     .pipe(gulpCopy(`${config.sourceFolderPath}/`, { prefix: 1 }));
 });

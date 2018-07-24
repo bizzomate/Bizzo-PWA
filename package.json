@@ -4,7 +4,8 @@
   "description": "Toolkit to build Mendix Progressive Web Apps Mx_PWA",
   "main": "index.js",
   "scripts": {
-    "dev-server": "cd theme & live-server"
+    "dev-server": "cd theme & live-server",
+    "bizzo-pwa" : "gulp mx-pwa"
   },
   "repository": {
     "type": "git",

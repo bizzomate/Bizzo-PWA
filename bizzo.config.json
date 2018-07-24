@@ -1,8 +1,15 @@
 {
-    "appName":"Bizzo MX-PWA",
+    "appShortName":"Test App",
+    "appName" :"Test App Boiler Plate",
     "deploymentFolderPath": "./deployment/web",
     "extentionsToBeCached":["html","js","css","svg","png","jpg"],
     "sourceFolderPath":"./theme",
-    "themeColor" : "#0000ff",
+    "themeColor" : "#919191",
+    "backgroundColor":"#191919",
+    "appIcons":[
+        {"img_512":"labsss_512.png"},
+        {"img_192":"labsss_192.png"},
+        {"img_128":"labsss_128.png"}
+    ],
     "offlineEnabled" : false
 }

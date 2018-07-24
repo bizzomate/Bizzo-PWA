@@ -1,3 +1,5 @@
+
+
 // importing bizzo config object.
 const config = require("./bizzo.config.json");
 const gulp = require("gulp");
@@ -13,10 +15,14 @@ const assetsDir = "./assets";
 // handle required config props
 if (config) {
   const requiredConfProps = [
+    "appShortName",
+    "appName",
     "sourceFolderPath",
     "deploymentFolderPath",
     "extentionsToBeCached",
     "themeColor",
+    "backgroundColor",
+    "appIcons",
     "offlineEnabled"
   ];
   const bizzoAssistantTitle = "\n### Bizzo Assistant ###\n".bold.blue;
@@ -60,7 +66,10 @@ gulp.task("watch:sw", () => {
 gulp.task("write:manifest.json", () => {
   gulp
     .src("./assets/manifest.json")
-    .pipe(gulpCopy(`${config.sourceFolderPath}/`, { prefix: 1 }));
+    .pipe(change(content=>{
+      return setAppManifest(config,content);
+    }))
+    .pipe(gulp.dest(`${config.sourceFolderPath}/`));
 });
 gulp.task("write:icons", () => {
   gulp
@@ -104,9 +113,12 @@ gulp.task("mx-pwa", gulpSync.sync(
 
 
 
+
+
+//bizzo pwa utils
 const getBizzoTagsContent = (themeColor)=>{
   let content = fs.readFileSync(`${assetsDir}/_bizzo-tags`,'utf-8');
-  return `<!-- bizzo-tags -->\n${content.replace(/\#\$theme\#/g,themeColor)}\n<!-- bizzo-tags-end -->`;
+  return `<!-- bizzo-tags -->\n${content.replace(/\#theme\#/g,themeColor)}\n<!-- bizzo-tags-end -->`;
 };
 
 const getBizzoScriptsContent = (offlineEnabled)=>{
@@ -119,4 +131,30 @@ const getBizzoScriptsContent = (offlineEnabled)=>{
   return `<!-- bizzo-scripts -->\n${content}\n<!-- bizzo-scripts-end -->`;
 }
 
+const setAppManifest = (config,content)=>{
+  //1. set app short name
+  if(config.appShortName){
+    content = content.replace(`#appShortName#`,config.appShortName);
+  }
+  //1. set app name
+  if(config.appName){
+    content = content.replace(`#appName#`,config.appName);
+  }
+  //3. set app icons
+  if(typeof config.appIcons.length === "number" ){
+    config.appIcons.forEach((icon)=>{
+      const iconKey = Object.keys(icon)[0];
+      content = content.replace(`#${iconKey}#`,icon[iconKey]);
+    });
+  }
+  //4. set app theme color
+  if(config.themeColor){
+    content = content.replace(`#themeColor#`,config.themeColor);
+  }
+  //5. set app background color ( splash screen bg)
+  if(config.backgroundColor){
+    content = content.replace(`#backgroundColor#`,config.backgroundColor);
+  }
+  return content;
+};
 

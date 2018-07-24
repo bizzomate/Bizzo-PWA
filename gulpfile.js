@@ -100,8 +100,8 @@ gulp.task("mx-pwa", [
   "write:manifest.json",
   "write:icons",
   "write:bizzo-sw-register",
-  "inject:tags",
-  "inject:scripts"
+  "inject:scripts",
+  "inject:tags"
 ]);
 
 

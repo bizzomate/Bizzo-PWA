@@ -1,6 +1,7 @@
 // importing bizzo config object.
 const config = require("./bizzo.config.json");
 const gulp = require("gulp");
+const gulpSync = require("gulp-sync")(gulp);
 const gulpCopy = require("gulp-copy");
 const swPreChache = require("sw-precache");
 const colors = require("colors");
@@ -80,7 +81,7 @@ gulp.task("inject:tags", () => {
   gulp
     .src(`${config.sourceFolderPath}/index.html`)
     .pipe(change(content =>{
-      return content.replace(/<!-- bizzo-tags -->[\s\S]*<!-- bizzo-tags-end -->/g,getBizzoTagsContent(config.themeColor));
+      return content.replace(/^<!-- bizzo-tags -->$[\s\S]*^<!-- bizzo-tags-end -->$/m,getBizzoTagsContent(config.themeColor));
     }))
     .pipe(gulp.dest(`${config.sourceFolderPath}/`));
 });
@@ -95,28 +96,22 @@ gulp.task("inject:scripts", () => {
 });
 
 
-gulp.task("mx-pwa", [
-  "write:sw",
-  "write:manifest.json",
-  "write:icons",
-  "write:bizzo-sw-register",
-  "inject:scripts",
-  "inject:tags"
-]);
+gulp.task("mx-pwa", gulpSync.sync(
+  [
+    "write:sw",
+    "write:manifest.json",
+    "write:icons",
+    "write:bizzo-sw-register",
+    "inject:tags",
+    "inject:scripts"
+  ]
+));
 
-
-const bizzoScripts = (content)=>{
-  if(config.offlineEnabled){
-    return content.replace()
-  }else{
-
-  }
-};
 
 
 const getBizzoTagsContent = (themeColor)=>{
   let content = fs.readFileSync(`${assetsDir}/_bizzo-tags`,'utf-8');
-  return `<!-- bizzo-tags -->\n${content.replace("#$theme#",themeColor)}\n<!-- bizzo-tags-end -->`;
+  return `\n<!-- bizzo-tags -->\n${content.replace(/\#\$theme\#/,themeColor)}\n<!-- bizzo-tags-end -->\n`;
 };
 
 const getBizzoScriptsContent = (offlineEnabled)=>{

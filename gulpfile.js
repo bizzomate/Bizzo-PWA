@@ -90,7 +90,7 @@ gulp.task("inject:scripts", () => {
   gulp
     .src(`${config.sourceFolderPath}/index.html`)
     .pipe(change(content =>{
-      return content.replace(/<!-- bizzo-scripts -->[\s\S]*<!-- bizzo-scripts-end -->/g,getBizzoScriptsContent(config.offlineEnabled));
+      return content.replace(/^<!-- bizzo-scripts -->$[\s\S]*^<!-- bizzo-scripts-end -->$/m,getBizzoScriptsContent(config.offlineEnabled));
     }))
     .pipe(gulp.dest(`${config.sourceFolderPath}/`));
 });

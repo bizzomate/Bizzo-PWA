@@ -111,7 +111,7 @@ gulp.task("mx-pwa", gulpSync.sync(
 
 const getBizzoTagsContent = (themeColor)=>{
   let content = fs.readFileSync(`${assetsDir}/_bizzo-tags`,'utf-8');
-  return `\n<!-- bizzo-tags -->\n${content.replace(/\#\$theme\#/,themeColor)}\n<!-- bizzo-tags-end -->\n`;
+  return `<!-- bizzo-tags -->\n${content.replace(/\#\$theme\#/,themeColor)}\n<!-- bizzo-tags-end -->`;
 };
 
 const getBizzoScriptsContent = (offlineEnabled)=>{

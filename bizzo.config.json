@@ -7,9 +7,9 @@
     "themeColor" : "#000000",
     "backgroundColor":"#ffffff",
     "appIcons":[
-        {"img_512":"lab_512.png"},
-        {"img_192":"lab_192.png"},
-        {"img_128":"lab_128.png"}
+        {"img_512":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_512.png"},
+        {"img_192":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_192.png"},
+        {"img_128":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_128.png"}
     ],
     "offlineEnabled" : false
 }

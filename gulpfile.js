@@ -63,6 +63,7 @@ gulp.task("watch:sw", () => {
   });
 });
 
+
 gulp.task("write:manifest.json", () => {
   gulp
     .src(`${assetsDir}/manifest.json`)
@@ -111,6 +112,14 @@ gulp.task("mx-pwa", gulpSync.sync(
   ]
 ));
 
+gulp.task("watch:mx-pwa",()=>{
+  
+  gulp.watch([
+    `${config.sourceFolderPath}/pwa_icons/*.png`,
+    `bizzo.config.json`
+  ],["mx-pwa"]);
+});
+
 
 
 
@@ -144,7 +153,14 @@ const setAppManifest = (config,content)=>{
   if(typeof config.appIcons.length === "number" ){
     config.appIcons.forEach((icon)=>{
       const iconKey = Object.keys(icon)[0];
-      content = content.replace(`#${iconKey}#`,icon[iconKey]);
+      const imgUrlRegEx = RegExp('^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$','gm');
+      let imgURL = "";
+      if(imgUrlRegEx.test(icon[iconKey])){
+        imgURL = icon[iconKey];
+      }else{
+        imgURL = `/pwa_icons/${icon[iconKey]}`;
+      }
+      content = content.replace(`#${iconKey}#`,`${imgURL}`);
     });
   }
   //4. set app theme color

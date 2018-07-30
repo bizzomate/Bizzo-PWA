@@ -8,5 +8,11 @@
                     console.error('Error while registering service worker', error);
                 });
         });
+        window.addEventListener("beforeinstallprompt", function(promptEvent) {
+            promptEvent.preventDefault();
+            setTimeout(function() {
+              promptEvent.prompt();
+            }, 5000);
+          });
     }
 }());

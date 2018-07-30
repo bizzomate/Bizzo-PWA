@@ -5,7 +5,7 @@
     var offlineTag = document.createElement("div");
     offlineTag.id = "offline-tag";
     offlineTag.style =
-      "width:100%;background-color: antiquewhite; display: flex;justify-content: center; flex-direction: column;align-items: center;height: 100vh;";
+      "width:100%;background-color: #2E387F; display: flex;justify-content: center; flex-direction: column;align-items: center;min-height: 100vh;";
     var offlineMessage = document.createElement("h1");
     offlineMessage.innerHTML =
       "You're offline, please check your internet connection.";

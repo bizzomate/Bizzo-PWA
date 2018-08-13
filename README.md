@@ -63,8 +63,37 @@ YOUR-MENDIX-APP-NAME
 ├── YOUR_APP_NAME.mpr
 └── ...
 ```
-3. Open your command line and run `npm install` _[Make sure that you all the requirements set and installed on your machine](https://github.com/bizzomate/Bizzo-PWA/wiki/Home/_edit#prerequisites)_
-4. type ` gulp mx-pwa ` _(make sure that you your deployment directory is not empty)_
+3. Open your command line and run `npm install` _[Make sure that all the requirements are set and installed on your machine](https://github.com/bizzomate/Bizzo-PWA/wiki/Home/_edit#prerequisites)_
+
+ > IMPORTANT NOTE: after running `npm install` DO NOT forget to add `node_modules` folder to your `svn ignore list`
+
+
+4. Now, in your `index.html` add the following comments:
+* Before the closing `<head>...</head>` add : 
+```html
+    <head>
+        ....... meta tags
+        ........ link tags
+        ......... etc
+        .........
+        <!-- bizzo-tags -->
+        <!-- bizzo-tags-end -->
+    </head>
+```
+the generator will use this comment/hook to inject the required meta tags into your `index.html` file.
+
+* Before the closing `<head>...</head>` add : 
+```html
+    <body>
+        ....... html tags
+        ........ 
+        ......... script tags
+        ......... etc
+        <!-- bizzo-scripts -->
+        <!-- bizzo-scripts-end -->
+    </body>
+```
+the generator will use this comment/hook to inject the required scripts into your `index.html` file.
 
 
 

@@ -144,4 +144,39 @@ The directory from which your web app is being served _**99.99% you won't change
 * ### extentionsToBeCached (Type : `Array Of String`)
 Array of file formats that your app contains and you'd like these files to be cached.
 
+* ### sourceFolderPath (Type : `String`, Default : `./theme`)
+The directory which contains your source files ( index.html, styles, scripts ...etc ) _**99.99% you won't change this property**_
 
+* ### themeColor (Type : `String`)
+A Hex number which represents your app theme color.
+
+
+* ### backgroundColor (Type : `String`)
+A Hex number which represents your app's splash screen background color.
+
+* ### appIcons (Type : `Array of Objects`): 
+This piece of configuration requires you to set **3** different sizes for your app's icons **[512x512, 192x192, 128x128]**, by default it has the following value: 
+``` json
+"appIcons":[
+        {"img_512":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_512.png"},
+        {"img_192":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_192.png"},
+        {"img_128":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_128.png"}
+    ]
+```
+> ### How to edit this property ?
+> After running `npm run bizzo-pwa` a folder named `pwa_icons` will be added to your `theme` folder, add your icons to this > folder, let's say that your icons have the following names [my-icon-512.png, my-icon-192.png, my-icon-128.png]; Now, back 
+> to your config file you need only to add your icons names as the following : 
+>
+> ``` json
+> "appIcons":[
+>         {"img_512":"my-icon-512.png"},
+>         {"img_192":"my-icon-192.png"},
+>         {"img_128":"my-icon-128.png"}
+>     ]
+> ```
+>
+> **IMPORTANT** : Icons Must always be placed in your `pwa_icons` folder.
+
+
+* ### offlineEnabled (Type : `boolean`, Default `False`)
+Mendix has the ability to create offline enabled apps, set this property to true if your app is offline enabled.

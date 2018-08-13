@@ -69,7 +69,7 @@ YOUR-MENDIX-APP-NAME
 
 
 4. Now, in your `index.html` add the following comments:
-* Before the closing `<head>...</head>` add : 
+* Before the closing tag `<head>...</head>` add : 
 ```html
     <head>
         ....... meta tags
@@ -82,7 +82,7 @@ YOUR-MENDIX-APP-NAME
 ```
 the generator will use this comment/hook to inject the required meta tags into your `index.html` file.
 
-* Before the closing `<head>...</head>` add : 
+* Before the closing tag `<body>...</body>` add : 
 ```html
     <body>
         ....... html tags
@@ -95,5 +95,53 @@ the generator will use this comment/hook to inject the required meta tags into y
 ```
 the generator will use this comment/hook to inject the required scripts into your `index.html` file.
 
+5. From your Mendix app root folder, open your command line tool and run the following command : 
+```sh
+
+npm run bizzo-pwa
+
+```
+6. We're done! re-run your Mendix App which became now a progressive web app. 😎🥇 
+
+> ### What does `npm run bizzo-pwa' do ?
+> It will read the config file `bizzo.config.json` in your root folder ( read how to set configuration ) and 
+> generate/inject/add the required files/tags for your mendix project. 
+
+###  ⚙ Configuration: bizzo.config.json
+
+This file contains the configuration for your Mendix PWA project,and is the only place that you need to work with while you're using this generator. Below we will explore all properties in this file : 
+
+```json
+{
+    "appShortName":"Bizzo MX-PWA",
+    "appName" :"Bizzo MX-PWA Boilerplate",
+    "deploymentFolderPath": "./deployment/web",
+    "extentionsToBeCached":["html","js","css","svg","png","jpg"],
+    "sourceFolderPath":"./theme",
+    "themeColor" : "#000000",
+    "backgroundColor":"#ffffff",
+    "appIcons":[
+        {"img_512":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_512.png"},
+        {"img_192":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_192.png"},
+        {"img_128":"https://raw.githubusercontent.com/bizzomate/Bizzo-PWA/master/static/lab_128.png"}
+    ],
+    "offlineEnabled" : false
+}
+
+```  
+> _The contnten above is the default configuration_
+
+* ### appShortName (Type : `String`)
+Progressive Web Apps are installable therefore this property will be used to provide a short human-readable name for the application. This is intended for when there is insufficient space to display the full name of the web application, like device (desktop / mobile) homescreens.
+
+* ### appName (Type : `String`)
+The name that will be displayed in the app splash screen after installing the app.
+
+* ### deploymentFolderPath (Type : `String`, Default : `./deployment/web`)
+The directory from which your web app is being served _**99.99% you won't change this property**_
+
+
+* ### extentionsToBeCached (Type : `Array Of String`)
+Array of file formats that your app contains and you'd like these files to be cached.
 
 

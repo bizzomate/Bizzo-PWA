@@ -180,3 +180,52 @@ This piece of configuration requires you to set **3** different sizes for your a
 
 * ### offlineEnabled (Type : `boolean`, Default `False`)
 Mendix has the ability to create offline enabled apps, set this property to true if your app is offline enabled.
+
+
+
+# Best Practices 👌🐱‍👤:
+* During development, it's recommended to create a separate mendix project settings (different port number) for your PWA, as in your PWA, `service worker` will intersect your app's requests and serve cached static contents (scripts, styles, images, icons, etc ...) if exist, although each time you run `npm run bizzo-pwa` the cached content will be updated, it's better to have a separated settings for your PWA in order to prevent any confusion.
+
+You can achieve that in your Mendix Modeler by doing the following : 
+
+ 1. Create new project configuration.
+
+![New Mendix Project Configuration](https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/set_project_settings.png?raw=true)
+
+ 2. And select it while working on your app.
+
+![Select the newly created Mendix Project Configuration](https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/new_project_settings.png?raw=true)
+
+ 3. Now let's say you wanna continue working on your project, for instance working on theming your project, you can return to use your previous project settings ( port number ) and have to go `index.html` and comment out the following script `bizzo-sw-register.js` : 
+```html
+
+<!-- <script src="bizzo-sw-register.js"></script> -->
+
+```
+
+By doing that you'll ensure that there are NO side effects coming from your PWA scripts or settings.
+
+
+* What browser to use for development? 
+
+**Chrome** 👍
+
+
+* During development, in your chrome dev tools in Service Workers tab check the option **update on reload**, this option will ensure that your service worker `bizzo-sw.js` is always in sync and up to date with the generated version using this generator.
+
+![Chrome dev tools service workers](https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/chrome-sw.PNG?raw=true)
+
+
+
+* How to delete an installed PWA ? 
+
+1. On your desktop/laptop you can delete an installed PWA by typing in the address bar of your chrome browser `chrome://apps/` and then hitting `Enter`, a page with all installed apps will open, then right click on your app's icon and `Remove from chrome`. 
+
+![Chrome dev tools service workers](https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/delete-pwa.png?raw=true)
+
+2. On your smart device (phone / tablet), you can just uninstall it as it is a native app.
+
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/uninstall-pwa.png?raw=true" alt="Chrome dev tools service workers" width="400px"/>
+
+
+And you can clear your chrome browser cache on your smart device by typing in your address bar `chrome://offline-internals`

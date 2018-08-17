@@ -1,5 +1,3 @@
-
-
 // importing bizzo config object.
 const config = require("./bizzo.config.json");
 const gulp = require("gulp");

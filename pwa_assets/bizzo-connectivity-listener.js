@@ -9,9 +9,11 @@
     var offlineMessage = document.createElement("h1");
     offlineMessage.innerHTML =
       "You're offline, please check your internet connection.";
+    offlineMessage.style.color = "#fff";
     var bizzoLink = document.createElement("a");
     bizzoLink.href = "https://www.bizzomate.com/en/";
     bizzoLink.innerHTML = "Bizzomate Team";
+    bizzoLink.style.color = "#fff";
 
     offlineTag.appendChild(offlineMessage);
     offlineTag.appendChild(bizzoLink);

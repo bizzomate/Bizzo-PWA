@@ -17,9 +17,9 @@
         }
     </style>
     <div class="noscript-container">
-        <h1>Please enable javascript in your browser</h1>
-        <h3><a href='https://www.wikihow.com/Enable-JavaScript'>How to enable javascript in my browser</a></h3>
-        <h4>Bizzomate Team</h4>
+        <h1 style="color:#fff;">Please enable javascript in your browser</h1>
+        <h3><a href='https://www.wikihow.com/Enable-JavaScript' style="color:#fff;">How to enable javascript in my browser</a></h3>
+        <h4 style="color:#fff;" >Bizzomate Team</h4>
     </div>
 </noscript>
 <script src="bizzo-sw-register.js"></script>

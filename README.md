@@ -31,7 +31,7 @@ $ npm install gulp-cli -g
 After having node & gulp-cli installed we are now ready to go! 👍 
 
 ### Usage : 
-1. [Download Bizzo PWA Package](https://github.com/bizzomate/Bizzo-PWA/raw/master/build/dist/bizzo-pwa.zip)
+1. [Download Bizzo PWA Package](https://github.com/bizzomate/Bizzo-PWA/releases/tag/v1.0)
 
 2. Extract the content of the downloaded `bizzo-pwa.zip` into your Mendix Application root folder.
 

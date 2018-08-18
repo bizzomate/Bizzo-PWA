@@ -3,6 +3,11 @@
 # Bizzo Mendix PWAs Generator
 Convert Mendix Apps to [Progressive Web Apps PWAs](https://developers.google.com/web/progressive-web-apps/) 
 
+## Demo
+Check & install [Demo](https://mxpwa.mxapps.io/) app, a simple Todo App 
+
+Or you can also take a quick look [here!](https://github.com/bizzomate/Bizzo-PWA/wiki/Home/_edit#demo-show-)
+
 ## Getting Started
 These instructions will walk with you step by step through the process of creating/converting Mendix Apps to Progressive Web Apps. 
 
@@ -176,6 +181,14 @@ This piece of configuration requires you to set **3** different sizes for your a
 > ```
 >
 > **IMPORTANT** : Icons Must always be placed in your `pwa_icons` folder.
+>
+>
+> **What are these sizes ?**
+>
+> `512x512` icon will be used in your app's splash screen as an icon/ a logo.
+>
+> `128x128` & `192x192` icons will be used for your app's icon on smart devices home screens.
+>
 
 
 * ### offlineEnabled (Type : `boolean`, Default `False`)
@@ -225,7 +238,82 @@ By doing that you'll ensure that there are NO side effects coming from your PWA 
 
 2. On your smart device (phone / tablet), you can just uninstall it as it is a native app.
 
-<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/uninstall-pwa.png?raw=true" alt="Chrome dev tools service workers" width="400px"/>
+<p align="center">
+  <img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/uninstall-pwa.png?raw=true" alt="Chrome dev tools service workers" width="400px"/>
+</p>
+
 
 
 And you can clear your chrome browser cache on your smart device by typing in your address bar `chrome://offline-internals`
+
+
+
+# Demo Show 🎦:
+
+
+
+### App installed on a desktop
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/desktop_open.PNG?raw=true" alt="app installed on desktop"/>
+</p>
+
+
+### Install app on your smart device
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/install_app.png?raw=true" alt="install app" width="400px"/>
+</p>
+
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/web_apk.png?raw=true" alt="web apk" width="400px"/>
+</p>
+
+
+
+
+
+### Open installed app
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/open_installed_app.png?raw=true" alt="open installed app" width="400px"/>
+</p>
+
+
+### Splash screen
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/splash_screen.png?raw=true" alt="splash screen" width="400px"/>
+</p>
+
+
+### App opened  (displayed in 'full-screen mode' as a native app)
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/landing_page.png?raw=true" alt="App opened" width="400px"/>
+</p>
+
+
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/app_open.png?raw=true" alt="App opened" width="400px"/>
+</p>
+
+
+###
+
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/edit_todo.png?raw=true" alt="App opened" width="400px"/>
+</p>
+
+
+
+
+### App icon 
+
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/pwa_icon.png?raw=true" alt="App icon" width="400px"/>
+</p>
+
+<p align="center">
+<img src="https://github.com/bizzomate/Bizzo-PWA/blob/master/docs/images/android_app_feel.png?raw=true" alt="App icon" width="400px"/>
+</p>
+
+
+## Issues
+If encountered any issue while using the generator please report it [here](https://github.com/bizzomate/Bizzo-PWA/issues)
+

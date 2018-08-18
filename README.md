@@ -6,7 +6,7 @@ Convert Mendix Apps to [Progressive Web Apps PWAs](https://developers.google.com
 ## Demo
 Check & install [Demo](https://mxpwa.mxapps.io/) app, a simple Todo App 
 
-Or you can also take a quick look [here!](https://github.com/bizzomate/Bizzo-PWA/wiki/Home/_edit#demo-show-)
+Or you can also take a quick look [here!](https://github.com/bizzomate/Bizzo-PWA#demo-show-)
 
 ## Getting Started
 These instructions will walk with you step by step through the process of creating/converting Mendix Apps to Progressive Web Apps. 
